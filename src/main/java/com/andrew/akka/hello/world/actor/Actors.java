@@ -5,6 +5,7 @@ import akka.actor.ActorSystem;
 import com.andrew.akka.hello.world.message.ChangeMessage;
 import com.andrew.akka.hello.world.message.StartMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 
@@ -15,14 +16,14 @@ public class Actors {
     private ActorSystem actorSystem;
 
     @Autowired
-    ActorRef akkaHelloWorldActor;
+    ActorRef akkaHello;
 
     @Autowired
-    ActorRef akkaGoodByeActor;
+    ActorRef akkaGoodBye;
 
     public void start() {
-        akkaHelloWorldActor.tell(new StartMessage("Hello Akka. I'm AkkaHelloWorldActor"), ActorRef.noSender());
-        akkaGoodByeActor.tell(new ChangeMessage("Good bye"), ActorRef.noSender());
+        akkaHello.tell(new StartMessage("Hello Akka. I'm AkkaHelloWorldActor"), ActorRef.noSender());
+        akkaGoodBye.tell(new ChangeMessage("Good bye"), ActorRef.noSender());
         actorSystem.terminate();
     }
 }

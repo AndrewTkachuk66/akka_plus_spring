@@ -1,6 +1,7 @@
 package com.andrew.akka.hello.world.spring;
 
 import akka.actor.Actor;
+import akka.actor.ActorRef;
 import akka.actor.IndirectActorProducer;
 import org.springframework.context.ApplicationContext;
 

@@ -29,13 +29,12 @@ public class AppConfiguration {
     }
 
     @Bean
-    public ActorRef akkaHelloWorldActor() {
+    public ActorRef akkaHello() {
         return system.actorOf(SpringExtension.SPRING_EXTENSION_PROVIDER.get(system).props("akkaHelloWorldActor"), "akkaHelloWorldActor");
     }
 
     @Bean
-    public ActorRef akkaGoodByeActor() {
+    public ActorRef akkaGoodBye() {
         return system.actorOf(SpringExtension.SPRING_EXTENSION_PROVIDER.get(system).props("akkaGoodByeActor"), "akkaGoodByeActor");
     }
-
 }
