@@ -2,22 +2,16 @@ package com.andrew.akka.hello.world.actor;
 
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
-
 import com.andrew.akka.hello.world.message.ChangeMessage;
+import com.andrew.akka.hello.world.spring.Actor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
-@Component
+@Actor
 //@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class AkkaGoodByeActor extends AbstractActor {
 
-    @Autowired
-    @Qualifier("akkaHello")
-    private ActorRef AkkaHelloWorldActor;
-
+    @Autowired @Actor(AkkaHelloActor.class)
+    private ActorRef akkaHello;
 
     @Override
     public Receive createReceive() {
@@ -27,7 +21,7 @@ public class AkkaGoodByeActor extends AbstractActor {
     }
 
     private void onSayBye(ChangeMessage message) {
-        AkkaHelloWorldActor.tell(new ChangeMessage("GoodBye AkkaHelloWorldActor"), getSelf());
+        akkaHello.tell(new ChangeMessage("GoodBye AkkaHelloWorldActor"), getSelf());
     }
 
 }

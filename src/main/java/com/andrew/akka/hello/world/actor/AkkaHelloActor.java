@@ -1,23 +1,20 @@
 package com.andrew.akka.hello.world.actor;
 
-
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import com.andrew.akka.hello.world.message.ChangeMessage;
 import com.andrew.akka.hello.world.message.StartMessage;
+import com.andrew.akka.hello.world.spring.Actor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 
-@Component
-public class AkkaHelloWorldActor extends AbstractActor {
+@Actor
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class AkkaHelloActor extends AbstractActor {
 
-    private AkkaHelloWorldActor() {
-    }
-
-    @Autowired
-    @Qualifier("akkaGoodBye")
-    private ActorRef AkkaGoodByeActor;
+    @Autowired @Actor()
+    private ActorRef akkaGoodBye;
 
     @Override
     public Receive createReceive() {
