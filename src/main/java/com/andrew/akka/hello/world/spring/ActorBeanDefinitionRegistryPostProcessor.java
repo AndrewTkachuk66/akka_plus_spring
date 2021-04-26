@@ -23,7 +23,7 @@ public class ActorBeanDefinitionRegistryPostProcessor implements BeanDefinitionR
                 .map(beanDefinitionRegistry::getBeanDefinition)
                 .filter(this::isActor)
                 .forEach(beanDefinition -> {
-//                    beanDefinition.setLazyInit(true);
+                    beanDefinition.setLazyInit(true);
 
                     BeanDefinition definition = new RootBeanDefinition(RepointableActorRef.class);
                     definition.setFactoryBeanName(getFactoryBeanName());
